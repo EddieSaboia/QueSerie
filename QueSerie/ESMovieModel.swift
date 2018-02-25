@@ -9,6 +9,7 @@
 import Foundation
 import RealmSwift
 import Realm
+import UIKit
 
 class ESMovieModel: Object {
    @objc dynamic var id:Int = 0
@@ -18,7 +19,6 @@ class ESMovieModel: Object {
    @objc dynamic var vote_average:Float = 0.0
    @objc dynamic var vote_count:Int = 0
    @objc dynamic var poster_path:String = ""
-   @objc dynamic var image:UIImage = UIImage()
    @objc dynamic var favorite:Bool = false
     
     override static func primaryKey() -> String? {

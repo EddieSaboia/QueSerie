@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-import RealmSwift
+import AlamofireImage
 
 struct pages: Decodable{
     let page:Int
@@ -24,24 +24,16 @@ struct pages: Decodable{
     }
 }
 
-class ESListMovies: UITableViewController {
+class ESListMovies: UITableViewController,MyCellDelegate {
+    var rowselected = 0
+    var btnrowselected = 0
     var numberofrow = 0
     var results:pages = pages.init(page: 0, total_results: 0, total_pages: 0, results: [])
     var images:[UIImage] = []
 
-    var realm : Realm! //(1)
-    
-    var remindersList: Results<ESMovieModel> {     //(2)
-        get {
-            return realm.objects(ESMovieModel.self)
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        realm = try! Realm()
         
         let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=f2f67cadf46e3bede42d6aae34920b38&language=en-US&page=1")
         
@@ -61,13 +53,14 @@ class ESListMovies: UITableViewController {
                 print("ERRO JSON : ", jsonErr)
             }
         }
+        
+        navigationItem.title = "Catalogo"
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -83,9 +76,21 @@ class ESListMovies: UITableViewController {
         
         cell.titlemovie.text = "\(self.results.results[indexPath.row].title)"
         cell.imagemovie.image = self.images[indexPath.row]
-        
+        //cell.btnfavorited.addTarget(self, action: #selector(ESListMovies.favorited), for: .touchUpInside)
+        cell.delegate = self
         return cell
         
+    }
+    
+    func btnCloseTapped(cell: ESMoviewCell) {
+        //Get the indexpath of cell where button was tapped
+        let indexPath = self.tableView.indexPath(for: cell)
+        btnrowselected = indexPath!.row
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        rowselected = indexPath.row
+        print(rowselected)
     }
     
     func downloadImage(url: URL) {
