@@ -6,6 +6,7 @@ target 'QueSerie' do
  pod 'Alamofire', '~> 4.6'
  pod 'SVProgressHUD'
  pod 'RealmSwift', '3.2.0-beta.1'
+ pod 'AlamofireImage', '~> 3.3'
 
   target 'QueSerieTests' do
     inherit! :search_paths
