@@ -1,0 +1,6 @@
+framework module Pods_QueSerie {
+  umbrella header "Pods-QueSerie-umbrella.h"
+
+  export *
+  module * { export * }
+}

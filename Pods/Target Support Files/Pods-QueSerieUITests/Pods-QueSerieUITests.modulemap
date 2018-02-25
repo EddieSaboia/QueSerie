@@ -1,0 +1,6 @@
+framework module Pods_QueSerieUITests {
+  umbrella header "Pods-QueSerieUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
