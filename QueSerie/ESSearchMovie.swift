@@ -36,7 +36,7 @@ class ESSearchMovie: UIViewController, UITableViewDataSource, UITableViewDelegat
     var datas:[String] = []
     var filtered:[String] = []
     
-    var rowselected = 0
+    var rowselected:Int?
     var btnrowselected = 0
     var numberofrow = 0
     var results:pagess = pagess.init(page: 0, total_results: 0, total_pages: 0, results: [])
@@ -65,10 +65,15 @@ class ESSearchMovie: UIViewController, UITableViewDataSource, UITableViewDelegat
                 
                 self.results = try JSONDecoder().decode(pagess.self, from: data!)
                 self.numberofrow = self.results.results.count
-                for _ in self.results.results{
+                for index in self.results.results{
                     self.datas.append(self.results.results[self.i].title)
                     print(self.datas[self.i])
                     self.i = self.i + 1
+                    if let url = URL(string: "https://image.tmdb.org/t/p/w500\(index.poster_path)") {
+                        self.downloadImage(url: url)
+                        self.statusfv.append(false)
+                        
+                    }
                 }
                 self.tableView.reloadData()
                  SVProgressHUD.dismiss()
@@ -87,8 +92,6 @@ class ESSearchMovie: UIViewController, UITableViewDataSource, UITableViewDelegat
             DispatchQueue.main.async() {
                 self.images.append(UIImage(data: data)!)
             }
-            self.tableView.reloadData();
-            SVProgressHUD.dismiss()
         }
         
     }
@@ -156,6 +159,18 @@ class ESSearchMovie: UIViewController, UITableViewDataSource, UITableViewDelegat
         return cell!;
     }
     
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        rowselected = indexPath.row
+        print(rowselected!)
+        return indexPath
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        rowselected = indexPath.row
+        print(rowselected!)
+    }
+    
+    
     func getNewmovies(text:String){
         let textmodif:String
         if text.isEmpty {
@@ -188,5 +203,17 @@ class ESSearchMovie: UIViewController, UITableViewDataSource, UITableViewDelegat
         }
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nextViewController = segue.destination as? ESDetalhemovie{
+            
+            nextViewController.image = self.images[rowselected!]
+            nextViewController.titles = self.results.results[rowselected!].title
+            nextViewController.overview = self.results.results[rowselected!].overview
+            nextViewController.idmovie = self.results.results[rowselected!].id
+            
+        }
+    }
+    
     
 }

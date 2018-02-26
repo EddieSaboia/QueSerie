@@ -25,7 +25,7 @@ struct pages: Decodable{
 }
 
 class ESListMovies: UITableViewController,MyCellDelegate {
-    var rowselected = 0
+    var rowselected:Int?
     var btnrowselected = 0
     var numberofrow = 0
     var results:pages = pages.init(page: 0, total_results: 0, total_pages: 0, results: [])
@@ -126,9 +126,15 @@ class ESListMovies: UITableViewController,MyCellDelegate {
         }
     }
     
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        rowselected = indexPath.row
+        print(rowselected!)
+        return indexPath
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         rowselected = indexPath.row
-        print(rowselected)
+        print(rowselected!)
     }
     
     func downloadImage(url: URL) {
@@ -154,13 +160,13 @@ class ESListMovies: UITableViewController,MyCellDelegate {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if let nextViewController = segue.destination as? ESDetalhemovie{
                 
-                nextViewController.image = self.images[rowselected]
-                nextViewController.titles = self.results.results[rowselected].title
-                nextViewController.votes = self.results.results[rowselected].vote_count
-                nextViewController.overview = self.results.results[rowselected].overview
-                nextViewController.idmovie = self.results.results[rowselected].id
+                nextViewController.image = self.images[rowselected!]
+                nextViewController.titles = self.results.results[rowselected!].title
+                nextViewController.overview = self.results.results[rowselected!].overview
+                nextViewController.idmovie = self.results.results[rowselected!].id
             
         }
     }
