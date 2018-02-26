@@ -15,14 +15,16 @@ class ESMovieJson:Decodable {
     let vote_average:Float
     let vote_count:Int
     let poster_path:String
+    var favorito:Bool?
     
-    init(id:Int, title:String, overview:String, vote_average:Float, vote_count:Int, poster_path:String) {
+    init(id:Int, title:String, overview:String, vote_average:Float, vote_count:Int, poster_path:String, favorito:Bool) {
         self.id = id
         self.title = title
         self.overview = overview
         self.vote_average = vote_average
         self.vote_count = vote_count
         self.poster_path = poster_path
+        self.favorito = favorito
     }
 
 }

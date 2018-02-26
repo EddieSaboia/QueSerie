@@ -15,6 +15,7 @@ class ESSearchMovie: UIViewController, UITableViewDataSource, UITableViewDelegat
     @IBOutlet weak var tableView: UITableView!
     
     var searchActive : Bool = false
+    var movies:[ESMovieJson]?
     var data = ["San Francisco","New York","San Jose","Chicago","Los Angeles","Austin","Seattle"]
     var filtered:[String] = []
     
@@ -25,6 +26,8 @@ class ESSearchMovie: UIViewController, UITableViewDataSource, UITableViewDelegat
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        
+        print("olah eu aquiaaaa \(movies?.count)")
         
     }
     
