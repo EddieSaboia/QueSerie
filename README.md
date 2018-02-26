@@ -9,7 +9,7 @@ em cartaz.
 Foi utilizada arquitetura DAO para facilitar o desenvolvimento por conta do tempo
 
  - Bibliotecas Utilizadas :
- Alamofire, Realm, SVPRogressHUD
+ Alamofire, CocoaPods, SVPRogressHUD
  
  - O que você melhoraria se tivesse mais tempo :
   faria um sistema de login, para coletar dados dso usuarios, criaria uma Tab de Votacao para os usuarios votarem nos filmes favoritos 
