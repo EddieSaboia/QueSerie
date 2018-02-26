@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import AlamofireImage
 import SVProgressHUD
 
 struct pages: Decodable{
@@ -34,14 +33,13 @@ class ESListMovies: UITableViewController,MyCellDelegate {
     var favoritos:[ESMovieJson] = []
     var statusfv:[Bool] = []
     
-   
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         SVProgressHUD.setDefaultMaskType(.black)
         SVProgressHUD.show(withStatus: "Carregando dados...")
+        
         let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=f2f67cadf46e3bede42d6aae34920b38&language=en-US&page=1")
         
         Alamofire.request(url!).responseJSON { (response) in
@@ -63,8 +61,6 @@ class ESListMovies: UITableViewController,MyCellDelegate {
                 print("ERRO JSON : ", jsonErr)
             }
         }
-        
-        navigationItem.title = "Catalogo"
     }
     
     override func didReceiveMemoryWarning() {
@@ -139,13 +135,13 @@ class ESListMovies: UITableViewController,MyCellDelegate {
         print("Download Started")
         getDataFromUrl(url: url) { data, response, error in
             guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
-            DispatchQueue.main.async() {
+                print(response?.suggestedFilename ?? url.lastPathComponent)
+                print("Download Finished")
+                DispatchQueue.main.async() {
                 self.images.append(UIImage(data: data)!)
             }
             self.tableView.reloadData();
-          SVProgressHUD.dismiss()
+            SVProgressHUD.dismiss()
         }
         
     }
@@ -158,18 +154,16 @@ class ESListMovies: UITableViewController,MyCellDelegate {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if let nextViewController = segue.destination as? ESDetalhemovie{
+        if let nextViewController = segue.destination as? ESDetalhemovie{
+                
                 nextViewController.image = self.images[rowselected]
                 nextViewController.titles = self.results.results[rowselected].title
                 nextViewController.votes = self.results.results[rowselected].vote_count
                 nextViewController.overview = self.results.results[rowselected].overview
-//                nextViewController.movies = self.results.results
-//                print("antes de ir \(self.results.results.count)")
-//                print("antes de ir \(nextViewController.movies!.count)")
-            }
+                nextViewController.idmovie = self.results.results[rowselected].id
+            
+        }
     }
-    
-    
     
 }
 

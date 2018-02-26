@@ -11,7 +11,6 @@
 		76B5BF442042454100A76A15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B5BF432042454100A76A15 /* AppDelegate.swift */; };
 		76B5BF492042454100A76A15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76B5BF472042454100A76A15 /* Main.storyboard */; };
 		76B5BF4C2042454100A76A15 /* QueSerie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76B5BF4A2042454100A76A15 /* QueSerie.xcdatamodeld */; };
-		76B5BF4E2042454100A76A15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76B5BF4D2042454100A76A15 /* Assets.xcassets */; };
 		76B5BF512042454100A76A15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76B5BF4F2042454100A76A15 /* LaunchScreen.storyboard */; };
 		76B5BF5C2042454100A76A15 /* QueSerieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B5BF5B2042454100A76A15 /* QueSerieTests.swift */; };
 		76B5BF672042454100A76A15 /* QueSerieUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B5BF662042454100A76A15 /* QueSerieUITests.swift */; };
@@ -22,6 +21,7 @@
 		76F414EE20430CE8007F50C2 /* ESMoviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F414ED20430CE8007F50C2 /* ESMoviewCell.swift */; };
 		76F414F220435D10007F50C2 /* ESMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F414F120435D10007F50C2 /* ESMovieModel.swift */; };
 		76F414F42043B39F007F50C2 /* ESDetalhemovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F414F32043B39F007F50C2 /* ESDetalhemovie.swift */; };
+		76F4A3E620446CD10002E2DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76B5BF4D2042454100A76A15 /* Assets.xcassets */; };
 		83CF5DE6D028E5691472EF89 /* Pods_QueSerieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D7BA0671FFC1D123A5153FF /* Pods_QueSerieTests.framework */; };
 		86B7B52131D59F2B34BA7E0E /* Pods_QueSerieUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABF361004DD3C236F0531AD /* Pods_QueSerieUITests.framework */; };
 /* End PBXBuildFile section */
@@ -303,7 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76B5BF512042454100A76A15 /* LaunchScreen.storyboard in Resources */,
-				76B5BF4E2042454100A76A15 /* Assets.xcassets in Resources */,
+				76F4A3E620446CD10002E2DC /* Assets.xcassets in Resources */,
 				76B5BF492042454100A76A15 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
